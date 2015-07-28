@@ -1,0 +1,307 @@
+{  
+   'client_order_num':'',
+   'managers':{  
+      'dict':{  
+
+      },
+      'ids':[  
+
+      ]
+   },
+   'parent_analysisrequest':None,
+   'member_discount':'0.00',
+   'sample':{  
+      'date_sampled':None,
+      'date_expired':None,
+      'composite':False,
+      'sample_type':{  
+         'url':'http://localhost:8080/DevMachine/bika_setup/bika_sampletypes/sampletype-1',
+         'obj':,
+         'id':'sampletype-1',
+         'title':'\xc3\x81gua'
+      },
+      'date_disposal':None,
+      'remarks':'',
+      'id':'agua-0004',
+      'sampling_date':      DateTime('2015/04/17 00:00:00      UTC'),
+      'obj':,
+      'url':'http://localhost:8080/DevMachine/clients/client-1/agua-0004',
+      'sample_point':{  
+
+      },
+      'client_sampleid':'',
+      'date_disposed':None,
+      'adhoc':False,
+      'date_received':      DateTime('2015/04/17 21:53:16.318101      UTC'),
+      'sampler':''
+   },
+   'adhoc':False,
+   'laboratory':{  
+      'confidence':None,
+      'accreditation_body':'',
+      'obj':,
+      'accreditation_logo':'',
+      'title':'Laboratory',
+      'url':'',
+      'logo':'http://localhost:8080/DevMachine/logo_print.jpg',
+      'address':'',
+      'accredited':False
+   },
+   'id':'agua-0004-R01',
+   'categorized_analyses':{  
+      'Lab Analyses':{  
+         'F\xc3\xadsico - Qu\xc3\xadmicos':[  
+            {  
+               'scientific_name':False,
+               'formatted_result':'9',
+               'result':'9',
+               'formatted_specs':'10 - 30',
+               'formatted_uncertainty':'',
+               'point_of_capture':'Lab Analyses',
+               'refsample':'agua-0004',
+               'id':'alcalinidade_total',
+               'unit':'',
+               'worksheet_url':None,
+               'category':'F\xc3\xadsico - Qu\xc3\xadmicos',
+               'title':'Alcalinidade Total',
+               'outofrange':True,
+               'accredited':False,
+               'specs':{  
+                  'hidemin':'1',
+                  'rangecomment':'Observa\xc3\xa7\xc3\xa3o de teste',
+                  'min':'10',
+                  'max':'30',
+                  'hidemax':'100',
+                  'error':'5'
+               },
+               'previous':[  
+
+               ],
+               'type':'Analysis',
+               'formatted_unit':'',
+               'reftype':None,
+               'remarks':'',
+               'previous_results':'',
+               'retested':False,
+               'obj':,
+               'keyword':'alcalinidade_total',
+               'worksheet':None,
+               'uncertainty':None,
+               'capture_date':               DateTime('2015/04/17 21:53:50.703116               UTC'),
+               'resultdm':'',
+               'request_id':'agua-0004-R01'
+            },
+            {  
+               'scientific_name':False,
+               'formatted_result':'60',
+               'result':'60',
+               'formatted_specs':'50 - 100',
+               'formatted_uncertainty':'',
+               'point_of_capture':'Lab Analyses',
+               'refsample':'agua-0004',
+               'id':'ph',
+               'unit':'',
+               'worksheet_url':None,
+               'category':'F\xc3\xadsico - Qu\xc3\xadmicos',
+               'title':'Ph',
+               'outofrange':False,
+               'accredited':False,
+               'specs':{  
+                  'hidemin':'20',
+                  'rangecomment':'Observa\xc3\xa7\xc3\xa3o dois',
+                  'min':'50',
+                  'max':'100',
+                  'hidemax':'200',
+                  'error':'10'
+               },
+               'previous':[  
+
+               ],
+               'type':'Analysis',
+               'formatted_unit':'',
+               'reftype':None,
+               'remarks':'',
+               'previous_results':'',
+               'retested':False,
+               'obj':,
+               'keyword':'ph',
+               'worksheet':None,
+               'uncertainty':None,
+               'capture_date':               DateTime('2015/04/17 21:53:50.703496               UTC'),
+               'resultdm':'',
+               'request_id':'agua-0004-R01'
+            }
+         ]
+      }
+   },
+   'invoiced':False,
+   'totalprice':0.0,
+   'hasblanks':False,
+   'qcanalyses':[  
+
+   ],
+   'points_of_capture':[  
+      'Lab Analyses'
+   ],
+   'reporter':{  
+      'username':'admin',
+      'fullname':'admin',
+      'email':''
+   },
+   'categorized_qcanalyses':{  
+
+   },
+   'invalid':False,
+   'date_received':   u'2015-04-17 09:53   PM',
+   'late':True,
+   'specifications':{  
+      'url':'http://localhost:8080/DevMachine/bika_setup/bika_analysisspecs/analysisspec-1',
+      'obj':,
+      'id':'analysisspec-1',
+      'resultsrange':{  
+         'alcalinidade_total':{  
+            'hidemin':'1',
+            'rangecomment':'Observa\xc3\xa7\xc3\xa3o de teste',
+            'min':'10',
+            'max':'30',
+            'hidemax':'100',
+            'error':'5'
+         },
+         'ph':{  
+            'hidemin':'20',
+            'rangecomment':'Observa\xc3\xa7\xc3\xa3o dois',
+            'min':'50',
+            'max':'100',
+            'hidemax':'200',
+            'error':'10'
+         }
+      },
+      'title':'Portaria de teste'
+   },
+   'client':{  
+      'fax':'',
+      'obj':,
+      'name':'ICB Software',
+      'url':'http://localhost:8080/DevMachine/clients/client-1',
+      'phone':'',
+      'address':'',
+      'id':'client-1'
+   },
+   'invoice_exclude':False,
+   'date_sampled':None,
+   'report_drymatter':False,
+   'composite':False,
+   'date_published':   u'2015-04-18 05:04   PM',
+   'portal':{  
+      'url':'http://localhost:8080/DevMachine',
+      'obj':
+   },
+   'hascontrols':False,
+   'remarks':'=== Fri, 17 Apr 2015 21:56:29 +0000 (admin) Observa\xc3\xa7\xc3\xa3o de teste direto na analise  ',
+   'analyses':[  
+      {  
+         'scientific_name':False,
+         'formatted_result':'9',
+         'result':'9',
+         'formatted_specs':'10 - 30',
+         'formatted_uncertainty':'',
+         'point_of_capture':'Lab Analyses',
+         'refsample':'agua-0004',
+         'id':'alcalinidade_total',
+         'unit':'',
+         'worksheet_url':None,
+         'category':'F\xc3\xadsico - Qu\xc3\xadmicos',
+         'title':'Alcalinidade Total',
+         'outofrange':True,
+         'accredited':False,
+         'specs':{  
+            'hidemin':'1',
+            'rangecomment':'Observa\xc3\xa7\xc3\xa3o de teste',
+            'min':'10',
+            'max':'30',
+            'hidemax':'100',
+            'error':'5'
+         },
+         'previous':[  
+
+         ],
+         'type':'Analysis',
+         'formatted_unit':'',
+         'reftype':None,
+         'remarks':'',
+         'previous_results':'',
+         'retested':False,
+         'obj':,
+         'keyword':'alcalinidade_total',
+         'worksheet':None,
+         'uncertainty':None,
+         'capture_date':         DateTime('2015/04/17 21:53:50.703116         UTC'),
+         'resultdm':'',
+         'request_id':'agua-0004-R01'
+      },
+      {  
+         'scientific_name':False,
+         'formatted_result':'60',
+         'result':'60',
+         'formatted_specs':'50 - 100',
+         'formatted_uncertainty':'',
+         'point_of_capture':'Lab Analyses',
+         'refsample':'agua-0004',
+         'id':'ph',
+         'unit':'',
+         'worksheet_url':None,
+         'category':'F\xc3\xadsico - Qu\xc3\xadmicos',
+         'title':'Ph',
+         'outofrange':False,
+         'accredited':False,
+         'specs':{  
+            'hidemin':'20',
+            'rangecomment':'Observa\xc3\xa7\xc3\xa3o dois',
+            'min':'50',
+            'max':'100',
+            'hidemax':'200',
+            'error':'10'
+         },
+         'previous':[  
+
+         ],
+         'type':'Analysis',
+         'formatted_unit':'',
+         'reftype':None,
+         'remarks':'',
+         'previous_results':'',
+         'retested':False,
+         'obj':,
+         'keyword':'ph',
+         'worksheet':None,
+         'uncertainty':None,
+         'capture_date':         DateTime('2015/04/17 21:53:50.703496         UTC'),
+         'resultdm':'',
+         'request_id':'agua-0004-R01'
+      }
+   ],
+   'child_analysisrequest':None,
+   'subtotal':Decimal('0.00'),
+   'haspreviousresults':False,
+   'categories':[  
+      'F\xc3\xadsico - Qu\xc3\xadmicos'
+   ],
+   'client_reference':'',
+   'obj':,
+   'vat_amount':0.0,
+   'footer':'',
+   'url':'http://localhost:8080/DevMachine/clients/client-1/agua-0004-R01',
+   'client_sampleid':'',
+   'batch':{  
+
+   },
+   'contact':{  
+      'pubpref':(),
+      'fullname':'Irapuan Bottosso',
+      'obj':,
+      'email':''
+   },
+   'prepublish':False,
+   'hasduplicates':False,
+   'resultsinterpretation':''
+}

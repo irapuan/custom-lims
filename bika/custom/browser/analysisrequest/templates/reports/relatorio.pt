@@ -1,0 +1,371 @@
+<!--
+
+    This file is copied directly from a bika.lims release.  You should probably
+    grab the latest file from there, as this out may not be up-to-date.
+
+    The latest version of this file is always available at:
+
+    https://github.com/bikalabs/Bika-LIMS/tree/master/bika/lims/browser/analysisrequest/templates/reports
+
+-->
+<tal:report tal:define="analysisrequest python:view.getAnalysisRequest();
+                        client          analysisrequest/client;
+                        contact         analysisrequest/contact;
+                        laboratory      analysisrequest/laboratory;
+                        portal          analysisrequest/portal;
+                        sample          analysisrequest/sample;
+                        batch           analysisrequest/batch;
+                        analyses        analysisrequest/analyses;
+                        qcanalyses      analysisrequest/qcanalyses;
+                        specifications  analysisrequest/specifications;
+                        reporter        analysisrequest/reporter;
+                        pointsofcapture analysisrequest/points_of_capture;
+                        categories      analysisrequest/categories;
+                        categanalyses   analysisrequest/categorized_analyses;
+                        categqcanalyses analysisrequest/categorized_qcanalyses;
+                        hasqcanalyses   python:len(qcanalyses) &gt; 0;
+                        reportdrymatter analysisrequest/report_drymatter;
+                        hasprevresults  analysisrequest/haspreviousresults;
+                        showqcanalyses  python:view.isQCAnalysesVisible();
+                        remarksenabled  python:view.context.bika_setup.getEnableAnalysisRemarks();
+                        ar_obj          python:analysisrequest['obj'];
+                        propostaComercial python:view.get_PropostaComercial(ar_obj);
+                        metodo python:view.get_Method(ar_obj);">
+
+	<style type="text/css" media="all">
+                    body {
+                        background-color: White;
+	                    margin-left: 0px;
+	                    margin-top: 0px;
+	                    margin-right: 0px;
+	                    margin-bottom: 0px;
+                    }
+                    .mensagemGenerica{
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 15px;
+                    }
+                    .numeroPagina{
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 10px;
+                        padding-left: 6px;
+                        padding-top: 3px;
+                    }
+                    .tituloReport{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 12px;
+                    	font-weight: bold;
+                    	text-align: center;
+                    }
+                    .textReport{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 12px;
+                    	text-align: left;
+                    }
+                    .textReportCenter{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 12px;
+                    	text-align: center;
+                    }          
+                    .textLegendaJustify{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 10px;
+                    	text-align: justify;
+                    }     
+                    .textCidade{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 12px;
+                        padding-left: 6px;
+                        padding-top: 3px;                    	
+                    }
+                    .textResponsavelTecnica{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 12px;
+                    	font-weight: bold;
+                    }
+                    .textResponsavelTecnicaCertificacao{
+                    	font-family: Arial, Helvetica, sans-serif;
+                    	font-size: 8px;                        
+                    }
+        .tabComBorda{
+            width: 700px;
+            border-style: solid;
+            border-color: Black;
+            border-width: 1px;
+            border-collapse: collapse;                
+        }
+        .tabComBorda tr td{
+            border-style: solid;
+            border-color: Black;
+            border-width: 1px;             
+        }
+        .tabSemBorda{
+            
+            border-style: none;
+            border-collapse: collapse;
+        }
+        .tabSemBorda tr td{
+            border-style: none;
+        }
+
+                    .tabCabecalhoNaoImpresso{
+                        height: 30px;
+                        width: 594px;
+                        border-style: none;
+                        border-collapse: collapse;
+                    }
+                    .tabCabecalhoNaoImpresso tr td{
+                        border-style: none;
+                    }        
+	</style>
+
+	<style type="text/css" media="print">
+		.tabCabecalhoNaoImpresso{
+			display: none;
+		}
+	</style>	
+
+<center>
+	<!-- Titulo -->
+	<table class="tabSemBorda" width="700">
+		<tbody>
+		<tr>
+			<td width="200">
+				<img src="logo.png" border="0" />
+			</td>
+			<td>
+				<div class="tituloReport">CERTIFICADO DE ENSAIOS Nº 325</div>
+			</td>
+			<td align="right" valign="top" width="200">
+				<div class="numeroPagina">Página 1</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<!-- Proposta Comercial -->
+	<table class="tabSemBorda">
+	<tbody>
+		<tr>
+			<td>
+				<div class="tituloReport">PROPOSTA COMERCIAL Nº <i tal:content="propostaComercial">0</i> </div>
+			</td>
+		<tr>
+	</tbody>
+	</table>
+
+	<!-- Dados da Amosta -->
+	<table class="tabComBorda">
+	<tbody>
+		<!-- Titulo Dados da Amosta -->
+		<tr>
+			<td width="350">
+				<div class="tituloReport">DADOS DA AMOSTRA</div>
+			</td>
+			<td width="350">
+				<div class="tituloReport">DADOS DA COLETA</div>
+			</td>			
+		</tr>
+		<!-- Valores dados da Amostra -->
+		<tr>
+			<td>
+				<div class="textReport"><strong>INTERESSADO:</strong> <i tal:content="client/name">client/name</i></div>
+			</td>
+			<td>
+				<div class="textReport"><strong>Coletor da amostra: </strong> <i>Microlab</i></div>
+			</td>			
+		</tr>
+		<tr>
+			<td>
+				<div class="textReport"><strong>ENDEREÇO:</strong> <span tal:content="structure python:client['obj'].getPhysicalAddress().get('address','')"></span></div>
+			</td>
+			<td>
+				<div class="textReport"><strong>Data da Coleta:</strong> <span tal_:content="analysisrequest/DataOfInput"></span></div>
+			</td>			
+		</tr>		
+		<tr>
+			<td>
+				<div class="textReport"><strong>Material:</strong> <span tal:content="sample/sample_type/title|nothing"></span></div>
+			</td>
+			<td>
+				<div class="textReport"><strong>Hora da Coleta:</strong> 14:49h</div>
+			</td>			
+		</tr>
+	</tbody>
+	</table>
+  
+  <tal:poc tal:repeat="poc python:categanalyses.keys()">
+  <!--<h2 tal:content="poc"></h2>-->
+  <tal:cat tal:repeat="cat python:categanalyses.get(poc,{}).keys()">
+
+	<table class="tabComBorda">
+	<tbody>
+		<tr>
+			<td>
+				<div class="tituloReport"><span tal:content="string:${cat}">Category</span></div>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+
+	<!-- Titulo Ensaios Físico-Químico -->	
+  
+	<table class="tabComBorda">
+	<tbody>
+		<!-- Titulo Ensaios Físico-Químico -->
+		<tr>
+			<td width="195">
+				<div class="tituloReport">Parâmetros</div>
+			</td>
+			<td width="50">
+				<div class="tituloReport">Resultados</div>
+			</td>						
+			<td width="50">
+				<div class="tituloReport">Unidade</div>
+			</td>
+			<td width="50">
+				<div class="tituloReport">LQ</div>
+			</td>
+			<td width="80">
+				<div class="tituloReport"><span tal:content="specifications/title|nothing"></span></div>
+			</td>			
+			<td width="125">
+				<div class="tituloReport">¹ Metodologia</div>
+			</td>			
+		</tr>
+    
+    
+		<!-- Valores Ensaios Físco-Químico -->
+    
+    <tal:analyses tal:repeat="analysis python:categanalyses[poc][cat]">
+    <tal:analysis tal:define="analysis_css_result python:'outofrange' if analysis['outofrange'] else '';
+                    analysis_css_accredited python:'accredited' if analysis['accredited'] else '';
+                    analysis_css_retested python:'retested' if analysis['retested'] else '';">
+    <tr tal:attributes="class python:'actual %s %s %s' % (analysis_css_result, analysis_css_accredited, analysis_css_retested);">
+			<td>
+				<div class="textReport"><span tal:content="analysis/title"></span></div>
+			</td>
+			<td>
+				<div class="textReportCenter"><strong><span class="result" tal:content="structure analysis/formatted_result"></span></strong></div>
+			</td>				
+      <td>
+        <div class="textReportCenter"><span class="units" tal:content="structure analysis/formatted_unit|nothing"></span></div>		
+      </td>
+			<td>
+				<div class="textReportCenter"><span class="units" _tal:content="structure analysis/specs/hidemin"></span></div>
+			</td>
+			<td>
+				<div class="textReportCenter"><span tal:condition="analysis/uncertainty"
+                          tal:replace="structure string:[&plusmn; ${analysis/formatted_uncertainty}] "></span>
+                    <span tal:replace="python:'(RT) ' if analysis['retested'] else ''"></span>
+                    <span tal:replace="analysis/formatted_specs">50 - 60</span></div>
+			</td>			
+			<td>
+				<div class="textReportCenter"><span class="result" tal:content="metodo"></span></div>
+			</td>			
+		</tr>
+
+    </tal:analysis>
+   	</tal:analyses>
+	</tbody>
+	</table>	
+    
+    </tal:cat>
+    </tal:poc>
+	<!-- Conclusão -->
+	<table class="tabComBorda">
+	<tbody>
+		<tr>
+			<td colspan="2">
+				<div class="textReport"><strong>Conclusão:</strong> </div>
+        <div id="resultsinterpretation" tal:condition="analysisrequest/resultsinterpretation">
+            <span tal:content="structure analysisrequest/resultsinterpretation"></span>
+        </div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="textLegendaJustify">
+					<strong>Legenda:</strong> NR: Não há recomendação pela legislação, VMP: Valor máximo permitido, pH: Potencial hidrogeniônico, cel: células, uH: Unidade de cor pelo Hazen em mg/L Pt-Co, NTU: Unidades Nefelométricas de Turbidez, V.A.: Virtualmente ausente, UFC: Unidade Formadora de Colônia, LQ: Limite de Quantificação, N.A.: Não Aplicavel: E.A.: Em Análise.
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="textLegendaJustify">
+					<strong>Notas:</strong>
+          <tal:poc tal:repeat="poc python:categanalyses.keys()">
+          <tal:cat tal:repeat="cat python:categanalyses.get(poc,{}).keys()">
+          <tal:analyses tal:repeat="analysis python:categanalyses[poc][cat]">
+          <tal:analysis tal:define="analysis_css_result python:'outofrange' if analysis['outofrange'] else '';
+                          analysis_css_accredited python:'accredited' if analysis['accredited'] else '';
+                          analysis_css_retested python:'retested' if analysis['retested'] else '';">
+					<span _tal:content="structure analysis/specs/rangecomment"></span>
+          </tal:analysis>
+         	</tal:analyses>
+          </tal:cat>
+          </tal:poc>
+				</div>
+			</td>
+		</tr>		
+		<tr>
+			<td width="50%" height="85">
+				<table width="100%" class="tabSemBorda">
+				<tbody>
+					<tr >
+						<td align="center" height="70">
+							<div class="textResponsavelTecnica">
+								Lorena Pereira de Brito
+								CRQ - 12200367
+								Responsável Técnica
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<div class="textResponsavelTecnicaCertificacao">
+								Certifico verificado e aprovado por meios eletrônicos
+							</div>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</td>
+			<td width="50%" align="right">
+        <tal:block define="DateTime python:modules['DateTime'].DateTime">
+				<div class="textCidade">Goiânia, <span tal:content="python:DateTime().strftime('%d/%m/%Y')"></span></div>
+      </tal:block>
+			</td>			
+		</tr>
+	</tbody>
+	</table>	
+
+	<!-- Rodape -->
+	<table class="tabSemBorda" width="700">
+	<tbody>
+		<tr>
+			<td colspan="3" height="20"></td>
+		</tr>
+		<tr>
+			<td width="234" align="center">
+				<div class="textReportCenter">
+					Avenida C-104, Nº 1.445, Jardim América
+					Goiânia-GO
+				</div>
+			</td>
+			<td width="234">
+				<div class="textReportCenter">
+					www.microlabambientel.com.br
+					rt@microlabambientel.com.br
+				</div>
+			</td>
+			<td width="234" align="right">
+				<div class="textReportCenter">
+					Código: FOR 5.10.03 Revisão: 02
+				</div>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+</center>
+
+</tal:report>
