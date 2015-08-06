@@ -21,8 +21,8 @@ class AnalysisRequestsView(AnalysisRequestsView):
 
     def __init__(self, context, request):
         super(AnalysisRequestsView, self).__init__(context, request)
-        self.columns['DataDeValidade'] = {'title': 'Data de Validade', 'toggle': True }
-        self.columns['PrevisaoDeEntrega'] = {'title': 'Previsao de Entrega', 'toggle': True }
+        self.columns['DataDeValidade'] = {'title': _b('Data de Validade')}
+        self.columns['PrevisaoDeEntrega'] = {'title': _b('Previsao de Entrega')}
         for rs in self.review_states:
             i = rs['columns'].index('BatchID') + 1
             rs['columns'].insert(i, 'DataDeValidade')

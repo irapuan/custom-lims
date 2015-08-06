@@ -225,7 +225,7 @@
 				<div class="tituloReport">LQ</div>
 			</td>
 			<td width="80">
-				<div class="tituloReport"><span tal:content="structure specifications"></span></div>
+				<div class="tituloReport"><span tal:content="structure specifications/title"></span></div>
 			</td>			
 			<td width="125">
 				<div class="tituloReport">¹ Metodologia</div>
