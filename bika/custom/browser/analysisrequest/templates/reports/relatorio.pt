@@ -29,8 +29,7 @@
                         showqcanalyses  python:view.isQCAnalysesVisible();
                         remarksenabled  python:view.context.bika_setup.getEnableAnalysisRemarks();
                         ar_obj          python:analysisrequest['obj'];
-                        propostaComercial python:view.get_PropostaComercial(ar_obj);
-                        metodo python:view.get_Method(ar_obj);">
+                        propostaComercial python:view.get_PropostaComercial(ar_obj);">
 
 	<style type="text/css" media="all">
                     body {
@@ -226,7 +225,7 @@
 				<div class="tituloReport">LQ</div>
 			</td>
 			<td width="80">
-				<div class="tituloReport"><span tal:content="specifications/title|nothing"></span></div>
+				<div class="tituloReport"><span tal:content="structure specifications"></span></div>
 			</td>			
 			<td width="125">
 				<div class="tituloReport">¹ Metodologia</div>
@@ -239,7 +238,9 @@
     <tal:analyses tal:repeat="analysis python:categanalyses[poc][cat]">
     <tal:analysis tal:define="analysis_css_result python:'outofrange' if analysis['outofrange'] else '';
                     analysis_css_accredited python:'accredited' if analysis['accredited'] else '';
-                    analysis_css_retested python:'retested' if analysis['retested'] else '';">
+                    analysis_css_retested python:'retested' if analysis['retested'] else '';
+                    analise python:analysis['obj'];
+                    metodo python:view.get_Method(analise);">
     <tr tal:attributes="class python:'actual %s %s %s' % (analysis_css_result, analysis_css_accredited, analysis_css_retested);">
 			<td>
 				<div class="textReport"><span tal:content="analysis/title"></span></div>
@@ -251,7 +252,7 @@
         <div class="textReportCenter"><span class="units" tal:content="structure analysis/formatted_unit|nothing"></span></div>		
       </td>
 			<td>
-				<div class="textReportCenter"><span class="units" _tal:content="structure analysis/specs/hidemin"></span></div>
+				<div class="textReportCenter"><span class="units" tal:content="structure analysis/specs/hidemin"></span></div>
 			</td>
 			<td>
 				<div class="textReportCenter"><span tal:condition="analysis/uncertainty"
@@ -260,10 +261,9 @@
                     <span tal:replace="analysis/formatted_specs">50 - 60</span></div>
 			</td>			
 			<td>
-				<div class="textReportCenter"><span class="result" tal:content="metodo"></span></div>
+				<div class="textReportCenter"><span class="result" tal:content="structure metodo/title"></span></div>
 			</td>			
 		</tr>
-
     </tal:analysis>
    	</tal:analyses>
 	</tbody>
@@ -367,5 +367,6 @@
 	</tbody>
 	</table>
 </center>
+
 
 </tal:report>
