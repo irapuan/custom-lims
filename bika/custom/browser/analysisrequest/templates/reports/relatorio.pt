@@ -225,7 +225,7 @@
 				<div class="tituloReport">LQ</div>
 			</td>
 			<td width="80">
-				<div class="tituloReport"><span tal:content="structure specifications/title"></span></div>
+				<div class="tituloReport"><span tal:content="structure specifications/title|nothing"></span></div>
 			</td>			
 			<td width="125">
 				<div class="tituloReport">¹ Metodologia</div>
@@ -252,7 +252,7 @@
         <div class="textReportCenter"><span class="units" tal:content="structure analysis/formatted_unit|nothing"></span></div>		
       </td>
 			<td>
-				<div class="textReportCenter"><span class="units" tal:content="structure analysis/specs/hidemin"></span></div>
+				<div class="textReportCenter"><span class="units" tal:content="structure analysis/specs/hidemin|nothing"></span></div>
 			</td>
 			<td>
 				<div class="textReportCenter"><span tal:condition="analysis/uncertainty"
@@ -261,7 +261,7 @@
                     <span tal:replace="analysis/formatted_specs">50 - 60</span></div>
 			</td>			
 			<td>
-				<div class="textReportCenter"><span class="result" tal:content="structure metodo/title"></span></div>
+				<div class="textReportCenter"><span class="result" tal:content="structure metodo/title|nothing"></span></div>
 			</td>			
 		</tr>
     </tal:analysis>
@@ -313,6 +313,9 @@
 				<tbody>
 					<tr >
 						<td align="center" height="70">
+              <img style="max-width: 150px" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
+                   tal:attributes="src string:${navroot}/++resource++recurso.estatico/assinatura.png"
+                   />
 							<div class="textResponsavelTecnica">
 								Lorena Pereira de Brito
 								CRQ - 12200367

@@ -12,5 +12,9 @@
        type="reports"
        name="custom"
    />
+   
+   <browser:resourceDirectory
+     name="recurso.estatico"
+     directory="static" />
 
 </configure>
