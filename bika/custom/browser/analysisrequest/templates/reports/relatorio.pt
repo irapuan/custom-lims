@@ -38,6 +38,7 @@
 	                    margin-top: 0px;
 	                    margin-right: 0px;
 	                    margin-bottom: 0px;
+                      counter-reset: page_number;
                     }
                     .mensagemGenerica{
                         font-family: Arial, Helvetica, sans-serif;
@@ -114,7 +115,12 @@
                     }
                     .tabCabecalhoNaoImpresso tr td{
                         border-style: none;
-                    }        
+                    }     
+                    
+                    #page-number:after {
+                        counter-increment: page_number;
+                        content: "Página " counter(page_number);
+                    }   
 	</style>
 
 	<style type="text/css" media="print">
@@ -132,10 +138,10 @@
 				<img src="logo.png" border="0" />
 			</td>
 			<td>
-				<div class="tituloReport">CERTIFICADO DE ENSAIOS Nº 325</div>
+				<div class="tituloReport">CERTIFICADO DE ENSAIOS <span tal:content="analysisrequest/id"></span></div>
 			</td>
 			<td align="right" valign="top" width="200">
-				<div class="numeroPagina">Página 1</div>
+				<div id='page-number' class="numeroPagina"></div>
 			</td>
 		</tr>
 		</tbody>
@@ -187,6 +193,14 @@
 			</td>
 			<td>
 				<div class="textReport"><strong>Hora da Coleta:</strong> 14:49h</div>
+			</td>			
+		</tr>
+		<tr>
+			<td>
+				
+			</td>
+			<td>
+				<div class="textReport"><strong>Data da entrada:</strong> 14:49h</div>
 			</td>			
 		</tr>
 	</tbody>
@@ -257,7 +271,6 @@
 			<td>
 				<div class="textReportCenter"><span tal:condition="analysis/uncertainty"
                           tal:replace="structure string:[&plusmn; ${analysis/formatted_uncertainty}] "></span>
-                    <span tal:replace="python:'(RT) ' if analysis['retested'] else ''"></span>
                     <span tal:replace="analysis/formatted_specs">50 - 60</span></div>
 			</td>			
 			<td>
@@ -317,9 +330,6 @@
                    tal:attributes="src string:${navroot}/++resource++recurso.estatico/assinatura.png"
                    />
 							<div class="textResponsavelTecnica">
-								Lorena Pereira de Brito
-								CRQ - 12200367
-								Responsável Técnica
 							</div>
 						</td>
 					</tr>
