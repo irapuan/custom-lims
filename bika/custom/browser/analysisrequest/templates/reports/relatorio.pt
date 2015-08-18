@@ -29,7 +29,8 @@
                         showqcanalyses  python:view.isQCAnalysesVisible();
                         remarksenabled  python:view.context.bika_setup.getEnableAnalysisRemarks();
                         ar_obj          python:analysisrequest['obj'];
-                        propostaComercial python:view.get_PropostaComercial(ar_obj);">
+                        propostaComercial python:view.get_PropostaComercial(ar_obj);
+                        DataValidade python:view.get_DataValidade(ar_obj);">
 
 	<style type="text/css" media="all">
                     body {
@@ -184,7 +185,7 @@
 				<div class="textReport"><strong>ENDEREÇO:</strong> <span tal:content="structure python:client['obj'].getPhysicalAddress().get('address','')"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data da Coleta:</strong> <span tal_:content="analysisrequest/DataOfInput"></span></div>
+				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="analysisrequest/date_sampled | nothing"></span></div>
 			</td>			
 		</tr>		
 		<tr>
@@ -192,16 +193,16 @@
 				<div class="textReport"><strong>Material:</strong> <span tal:content="sample/sample_type/title|nothing"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Hora da Coleta:</strong> 14:49h</div>
-			</td>			
+				<div class="textReport"><strong>Data de Entrada no Lab.:</strong> <span tal:content="analysisrequest/date_received | nothing"></span></div>
+			</td>				
 		</tr>
 		<tr>
 			<td>
-				
+				<div class="textReport"><strong>Ponto de Referência:</strong> <span tal:content="structure analysisrequest/client_sampleid | nothing"></span> </div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data da entrada:</strong></div>
-			</td>			
+				<div class="textReport"><strong>Data de Validade:</strong> <span tal:content="DataValidade | nothing"></span></div>
+			</td>	
 		</tr>
 	</tbody>
 	</table>
@@ -257,21 +258,35 @@
                     metodo python:view.get_Method(analise);">
     <tr tal:attributes="class python:'actual %s %s %s' % (analysis_css_result, analysis_css_accredited, analysis_css_retested);">
 			<td>
-				<div class="textReport"><span tal:content="analysis/title"></span></div>
+				<div class="textReport">
+          <span tal:content="analysis/title"></span>
+        </div>
 			</td>
 			<td>
-				<div class="textReportCenter"><strong><span class="result" tal:content="structure analysis/formatted_result"></span></strong></div>
+				<div class="textReportCenter">
+          <strong><span class="result" tal:content="structure analysis/formatted_result"></span></strong>
+        </div>
 			</td>				
       <td>
-        <div class="textReportCenter"><span class="units" tal:content="structure analysis/formatted_unit|nothing"></span></div>		
+        <div class="textReportCenter">
+          <span class="units" tal:content="structure analysis/formatted_unit|nothing"></span>
+        </div>
       </td>
 			<td>
-				<div class="textReportCenter"><span class="units" tal:content="structure analysis/specs/hidemin|nothing"></span></div>
+				<div class="textReportCenter">
+          <span tal:condition="not: analysis/specs/hidemin">
+            <span>NR</span>
+          </span>
+          <span class="units" tal:content="structure analysis/specs/hidemin|nothing"></span>
+        </div>
 			</td>
 			<td>
-				<div class="textReportCenter"><span tal:condition="analysis/uncertainty"
-                          tal:replace="structure string:[&plusmn; ${analysis/formatted_uncertainty}] "></span>
-                    <span tal:replace="analysis/formatted_specs">50 - 60</span></div>
+				<div class="textReportCenter">
+          <span tal:condition="not: analysis/formatted_specs">
+            <span>NR</span>
+          </span>
+          <span tal:content="structure analysis/formatted_specs">NR</span>
+        </div>
 			</td>			
 			<td>
 				<div class="textReportCenter"><span class="result" tal:content="structure metodo/title|nothing"></span></div>
@@ -298,13 +313,6 @@
 		<tr>
 			<td colspan="2">
 				<div class="textLegendaJustify">
-					<strong>Legenda:</strong> NR: Não há recomendação pela legislação, VMP: Valor máximo permitido, pH: Potencial hidrogeniônico, cel: células, uH: Unidade de cor pelo Hazen em mg/L Pt-Co, NTU: Unidades Nefelométricas de Turbidez, V.A.: Virtualmente ausente, UFC: Unidade Formadora de Colônia, LQ: Limite de Quantificação, N.A.: Não Aplicavel: E.A.: Em Análise.
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div class="textLegendaJustify">
 					<strong>Notas:</strong>
           <tal:poc tal:repeat="poc python:categanalyses.keys()">
           <tal:cat tal:repeat="cat python:categanalyses.get(poc,{}).keys()">
@@ -312,11 +320,18 @@
           <tal:analysis tal:define="analysis_css_result python:'outofrange' if analysis['outofrange'] else '';
                           analysis_css_accredited python:'accredited' if analysis['accredited'] else '';
                           analysis_css_retested python:'retested' if analysis['retested'] else '';">
-					<span _tal:content="structure analysis/specs/rangecomment"></span>
+					<span tal:content="structure analysis/specs/rangecomment | nothing"></span>
           </tal:analysis>
          	</tal:analyses>
           </tal:cat>
           </tal:poc>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="textLegendaJustify">
+					<strong>Legenda:</strong> NR: Não há recomendação pela legislação, VMP: Valor máximo permitido, pH: Potencial hidrogeniônico, cel: células, uH: Unidade de cor pelo Hazen em mg/L Pt-Co, NTU: Unidades Nefelométricas de Turbidez, V.A.: Virtualmente ausente, UFC: Unidade Formadora de Colônia, LQ: Limite de Quantificação, N.A.: Não Aplicavel: E.A.: Em Análise.
 				</div>
 			</td>
 		</tr>		
@@ -380,6 +395,6 @@
 	</tbody>
 	</table>
 </center>
-
+<span tal:content="structure analysisrequest"></span>
 
 </tal:report>

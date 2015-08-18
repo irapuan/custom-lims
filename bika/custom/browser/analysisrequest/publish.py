@@ -15,3 +15,6 @@ class AnalysisRequestPublishView(_AnalysisRequestPublishView):
     def get_Method(self,analise):
         return analise.Schema().getField('Method').get(analise) \
             if 'Method' in analise.Schema() else None
+    def get_DataValidade(self, ar):
+        return ar.Schema().getField('DataDeValidade').get(ar) \
+            if 'DataDeValidade' in ar.Schema() else None
