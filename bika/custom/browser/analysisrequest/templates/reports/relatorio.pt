@@ -201,7 +201,9 @@
 				<div class="textReport"><strong>Ponto de Referência:</strong> <span tal:content="structure analysisrequest/client_sampleid | nothing"></span> </div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data de Validade:</strong> <span tal:content="DataValidade | nothing"></span></div>
+        <span tal:condition="DataValidade">
+          <div class="textReport"><strong>Data de Validade:</strong> <span tal:content="DataValidade | nothing"></span></div>
+        </span>
 			</td>	
 		</tr>
 	</tbody>
