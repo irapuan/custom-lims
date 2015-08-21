@@ -185,7 +185,7 @@
 				<div class="textReport"><strong>ENDEREÇO:</strong> <span tal:content="structure python:client['obj'].getPhysicalAddress().get('address','')"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="analysisrequest/date_sampled | nothing"></span></div>
+				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="analysisrequest/date_received | nothing"></span></div>
 			</td>			
 		</tr>		
 		<tr>
@@ -198,7 +198,7 @@
 		</tr>
 		<tr>
 			<td>
-				<div class="textReport"><strong>Ponto de Referência:</strong> <span tal:content="structure analysisrequest/client_sampleid | nothing"></span> </div>
+				<div class="textReport"><strong>Referência:</strong> <span tal:content="structure analysisrequest/client_sampleid | nothing"></span> </div>
 			</td>
 			<td>
         <span tal:condition="DataValidade">
@@ -256,12 +256,13 @@
     <tal:analysis tal:define="analysis_css_result python:'outofrange' if analysis['outofrange'] else '';
                     analysis_css_accredited python:'accredited' if analysis['accredited'] else '';
                     analysis_css_retested python:'retested' if analysis['retested'] else '';
+                    analysis_css_font_style python:'font-style: italic'if analysis['scientific_name'] else 'font-style: normal';
                     analise python:analysis['obj'];
                     metodo python:view.get_Method(analise);">
     <tr tal:attributes="class python:'actual %s %s %s' % (analysis_css_result, analysis_css_accredited, analysis_css_retested);">
 			<td>
 				<div class="textReport">
-          <span tal:content="analysis/title"></span>
+          <p tal:attributes="style python:analysis_css_font_style" tal:content="analysis/title"></p>
         </div>
 			</td>
 			<td>
@@ -279,6 +280,7 @@
           <span tal:condition="not: analysis/specs/hidemin | nothing">
             <span>NR</span>
           </span>
+          
           <span class="units" tal:content="structure analysis/specs/hidemin|nothing"></span>
         </div>
 			</td>
@@ -287,7 +289,12 @@
           <span tal:condition="not: analysis/formatted_specs">
             <span>NR</span>
           </span>
-          <span tal:content="structure analysis/formatted_specs">NR</span>
+          <span tal:condition="analysis/specs/rangecomment | nothing">
+            <span tal:content="structure analysis/specs/rangecomment | nothing"></span>
+          </span>
+          <span tal:condition="not: analysis/specs/rangecomment | nothing">
+            <span tal:content="structure analysis/formatted_specs">NR</span>
+          </span>
         </div>
 			</td>			
 			<td>
@@ -312,7 +319,7 @@
         </div>
 			</td>
 		</tr>
-		<tr>
+		<!--tr>
 			<td colspan="2">
 				<div class="textLegendaJustify">
 					<strong>Notas:</strong>
@@ -329,7 +336,7 @@
           </tal:poc>
 				</div>
 			</td>
-		</tr>
+		</tr-->
 		<tr>
 			<td colspan="2">
 				<div class="textLegendaJustify">
@@ -361,9 +368,12 @@
 				</table>
 			</td>
 			<td width="50%" align="right">
-        <tal:block define="DateTime python:modules['DateTime'].DateTime">
-				<div class="textCidade">Goiânia, <span tal:content="python:DateTime().strftime('%d/%m/%Y')"></span></div>
-      </tal:block>
+        <center>
+         <tal:block define="DateTime python:modules['DateTime'].DateTime">
+				 <div class="textCidade">Goiânia, <span tal:content="python:DateTime().strftime('%d/%m/%Y')"></span></div>
+         </tal:block>
+        </center>
+      
 			</td>			
 		</tr>
 	</tbody>
@@ -397,5 +407,5 @@
 	</tbody>
 	</table>
 </center>
-
+<span tal:content="structure analysisrequest"></span>
 </tal:report>
