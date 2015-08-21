@@ -407,5 +407,4 @@
 	</tbody>
 	</table>
 </center>
-<span tal:content="structure analysisrequest"></span>
 </tal:report>
