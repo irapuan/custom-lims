@@ -30,7 +30,8 @@
                         remarksenabled  python:view.context.bika_setup.getEnableAnalysisRemarks();
                         ar_obj          python:analysisrequest['obj'];
                         propostaComercial python:view.get_PropostaComercial(ar_obj);
-                        DataValidade python:view.get_DataValidade(ar_obj);">
+                        DataValidade python:view.get_DataValidade(ar_obj);
+                        Coletor python:view.get_Coletor(ar_obj);">
 
 	<style type="text/css" media="all">
                     body {
@@ -177,7 +178,7 @@
 				<div class="textReport"><strong>INTERESSADO:</strong> <i tal:content="client/name">client/name</i></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Coletor da amostra: </strong> <i>Microlab</i></div>
+				<div class="textReport"><strong>Coletor da amostra: </strong> <i tal:content="Coletor | nothing"></i></div>
 			</td>			
 		</tr>
 		<tr>
@@ -394,8 +395,8 @@
 			</td>
 			<td width="234">
 				<div class="textReportCenter">
-					www.microlabambientel.com.br
-					rt@microlabambientel.com.br
+					www.microlabambiental.com.br
+					rt@microlabambiental.com.br
 				</div>
 			</td>
 			<td width="234" align="right">

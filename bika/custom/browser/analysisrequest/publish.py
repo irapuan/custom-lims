@@ -18,3 +18,6 @@ class AnalysisRequestPublishView(_AnalysisRequestPublishView):
     def get_DataValidade(self, ar):
         return ar.Schema().getField('DataDeValidade').get(ar) \
             if 'DataDeValidade' in ar.Schema() else None
+    def get_Coletor(self, ar):
+        return ar.Schema().getField('MicrolabColetor').get(ar) \
+            if 'MicrolabColetor' in ar.Schema() else None
