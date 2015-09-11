@@ -315,8 +315,19 @@
 		<tr>
 			<td colspan="2">
 				<div class="textReport"><strong>Conclusão:</strong> </div>
-        <div id="resultsinterpretation" tal:condition="analysisrequest/resultsinterpretation">
+        <!--div id="resultsinterpretation" tal:condition="analysisrequest/resultsinterpretation">
             <span tal:content="structure analysisrequest/resultsinterpretation"></span>
+        </div-->
+        
+        <div id="section-resultsinterpretation"
+            tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
+            tal:condition="python: ri">
+            <h1 i18n:translate="">Results interpretation</h1>
+            <tal:ris repeat="rid python:ri.keys()">
+                <h2 tal:content="rid" tal:condition="rid"></h2>
+                <div tal:content="structure python:ri.get(rid,{}).get('richtext','')"></div>
+                <p>&nbsp;</p>
+            </tal:ris>
         </div>
 			</td>
 		</tr>
