@@ -325,7 +325,6 @@
             <tal:ris repeat="rid python:ri.keys()">
                 <h2 tal:content="rid" tal:condition="rid"></h2>
                 <div tal:content="structure python:ri.get(rid,{}).get('richtext','')"></div>
-                <p>&nbsp;</p>
             </tal:ris>
         </div>
 			</td>
