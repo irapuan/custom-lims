@@ -3,6 +3,7 @@ from bika.lims.browser.analysisrequest.publish import \
 from bika.lims import bikaMessageFactory as _
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 import glob, os, sys, traceback
+from datetime import date
 
 class AnalysisRequestPublishView(_AnalysisRequestPublishView):
 
@@ -21,3 +22,7 @@ class AnalysisRequestPublishView(_AnalysisRequestPublishView):
     def get_Coletor(self, ar):
         return ar.Schema().getField('MicrolabColetor').get(ar) \
             if 'MicrolabColetor' in ar.Schema() else None
+            
+    def get_date_received(self, ar):
+        return ar.Schema().getField('DateReceived').get(ar).strftime('%d/%m/%Y') \
+            if 'DateReceived' in ar.Schema() else None

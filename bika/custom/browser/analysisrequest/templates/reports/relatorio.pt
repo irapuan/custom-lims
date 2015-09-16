@@ -31,7 +31,8 @@
                         ar_obj          python:analysisrequest['obj'];
                         propostaComercial python:view.get_PropostaComercial(ar_obj);
                         DataValidade python:view.get_DataValidade(ar_obj);
-                        Coletor python:view.get_Coletor(ar_obj);">
+                        Coletor python:view.get_Coletor(ar_obj);
+                        DataRecebimento python:view.get_date_received(ar_obj);">
 
 	<style type="text/css" media="all">
                     body {
@@ -186,7 +187,7 @@
 				<div class="textReport"><strong>ENDEREÇO:</strong> <span tal:content="structure python:client['obj'].getPhysicalAddress().get('address','')"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="analysisrequest/date_received | nothing"></span></div>
+				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="DataRecebimento | nothing"></span></div>
 			</td>			
 		</tr>		
 		<tr>
@@ -194,7 +195,7 @@
 				<div class="textReport"><strong>Material:</strong> <span tal:content="sample/sample_type/title|nothing"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data de Entrada no Lab.:</strong> <span tal:content="analysisrequest/date_received | nothing"></span></div>
+				<div class="textReport"><strong>Data de Entrada no Lab.:</strong> <span tal:content="DataRecebimento | nothing"></span></div>
 			</td>				
 		</tr>
 		<tr>
@@ -315,18 +316,36 @@
 		<tr>
 			<td colspan="2">
 				<div class="textReport"><strong>Conclusão:</strong> </div>
-        <!--div id="resultsinterpretation" tal:condition="analysisrequest/resultsinterpretation">
-            <span tal:content="structure analysisrequest/resultsinterpretation"></span>
-        </div-->
         
         <div id="resultsinterpretation"
             tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
             tal:condition="python: ri">
             <tal:ris repeat="rid python:ri.keys()">
-                <h2 tal:content="rid" tal:condition="rid"></h2>
+                <span tal:content="rid" tal:condition="rid"></span>
                 <div tal:content="structure python:ri.get(rid,{}).get('richtext','')"></div>
             </tal:ris>
         </div>
+        <!--div id="section-resultsinterpretation"
+            tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
+            _tal:condition="python: ri">
+            <tal:ris repeat="rid python:ri.keys()">
+                <span tal:content="rid" _tal:condition="rid"></span>
+                <div tal:content="structure python:ri.get(rid,{}).get('richtext','')"></div>
+            </tal:ris>
+        </div>
+        
+        <div id="resultsinterpretation" tal:condition="analysisrequest/resultsinterpretation">
+            <span tal:content="structure analysisrequest/resultsinterpretation"></span>
+        </div>
+        
+        <div id="resultsinterpretation"
+            tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
+            tal:condition="python: ri">
+            <tal:ris repeat="rid python:ri.keys()">
+                <span tal:content="rid" tal:condition="rid"></span>
+                <div tal:content="structure python:ri.get(rid,{}).get('richtext','')"></div>
+            </tal:ris>
+        </div-->
 			</td>
 		</tr>
 		<!--tr>
@@ -417,4 +436,6 @@
 	</tbody>
 	</table>
 </center>
+
+<span _tal:content="structure analysisrequest"></span>
 </tal:report>

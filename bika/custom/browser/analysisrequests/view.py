@@ -23,6 +23,7 @@ class AnalysisRequestsView(AnalysisRequestsView):
         super(AnalysisRequestsView, self).__init__(context, request)
         self.columns['DataDeValidade'] = {'title': _b('Data de Validade')}
         self.columns['PrevisaoDeEntrega'] = {'title': _b('Previsao de Entrega')}
+        
         for rs in self.review_states:
             i = rs['columns'].index('BatchID') + 1
             rs['columns'].insert(i, 'DataDeValidade')
@@ -30,3 +31,4 @@ class AnalysisRequestsView(AnalysisRequestsView):
 
     def __call__(self):
         return super(AnalysisRequestsView, self).__call__()
+
