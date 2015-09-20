@@ -315,7 +315,7 @@
 	<tbody>
 		<tr>
 			<td colspan="2">
-				<div class="textReport"><strong>Conclusão:</strong> </div>
+				<div class="textReport"><strong>As opniões e interpretações expressas abaixo não fazem parte do escopo de acreditação deste laboratório:</strong> </div>
         
         <div id="resultsinterpretation" class="textReport"
             tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
