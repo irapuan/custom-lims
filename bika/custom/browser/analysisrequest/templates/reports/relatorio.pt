@@ -32,7 +32,8 @@
                         propostaComercial python:view.get_PropostaComercial(ar_obj);
                         DataValidade python:view.get_DataValidade(ar_obj);
                         Coletor python:view.get_Coletor(ar_obj);
-                        DataRecebimento python:view.get_date_received(ar_obj);">
+                        DataRecebimento python:view.get_date_received(ar_obj);
+                        DataAmostragem python:view.get_date_sampled_(ar_obj);">
 
 	<style type="text/css" media="all">
                     body {
@@ -187,7 +188,7 @@
 				<div class="textReport"><strong>ENDEREÇO:</strong> <span tal:content="structure python:client['obj'].getPhysicalAddress().get('address','')"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="DataRecebimento | nothing"></span></div>
+				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="DataAmostragem | nothing"></span></div>
 			</td>			
 		</tr>		
 		<tr>
@@ -437,5 +438,5 @@
 	</table>
 </center>
 
-<span _tal:content="structure analysisrequest"></span>
+<span tal:content="structure analysisrequest"></span>
 </tal:report>
