@@ -438,5 +438,5 @@
 	</table>
 </center>
 
-<span tal:content="structure analysisrequest"></span>
+<span _tal:content="structure analysisrequest"></span>
 </tal:report>
