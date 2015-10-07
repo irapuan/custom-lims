@@ -188,6 +188,28 @@ class AnalysisRequestSchemaExtender(object):
                          },
             ),
         ),
+        ExtStringField('DataDaColeta',
+            required = 0,
+            widget = atapi.StringWidget(
+                label = _(u"Data da Coleta"),
+                visible={'edit': 'visible',
+                         'view': 'visible',
+                         'add': 'edit',
+                         'header_table': 'visible',
+                         'sample_registered': {'view': 'visible', 'edit': 'visible', 'add': 'edit'},
+                         'to_be_sampled':     {'view': 'visible', 'edit': 'visible'},
+                         'sampled':           {'view': 'visible', 'edit': 'visible'},
+                         'to_be_preserved':   {'view': 'visible', 'edit': 'visible'},
+                         'sample_due':        {'view': 'visible', 'edit': 'visible'},
+                         'sample_received':   {'view': 'visible', 'edit': 'visible'},
+                         'attachment_due':    {'view': 'visible', 'edit': 'visible'},
+                         'to_be_verified':    {'view': 'visible', 'edit': 'visible'},
+                         'verified':          {'view': 'visible', 'edit': 'visible'},
+                         'published':         {'view': 'visible', 'edit': 'invisible'},
+                         'invalid':           {'view': 'visible', 'edit': 'invisible'},
+                         },
+            ),
+        ),
     ]
 
     def __init__(self, context):

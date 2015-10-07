@@ -29,3 +29,6 @@ class AnalysisRequestPublishView(_AnalysisRequestPublishView):
     def get_date_sampled_(self, ar):
         return ar.Schema().getField('SamplingDate').get(ar) \
             if 'SamplingDate' in ar.Schema() else None
+    def get_hora_coleta(self, ar):
+        return ar.Schema().getField('DataDaColeta').get(ar) \
+            if 'DataDaColeta' in ar.Schema() else None

@@ -33,7 +33,8 @@
                         DataValidade python:view.get_DataValidade(ar_obj);
                         Coletor python:view.get_Coletor(ar_obj);
                         DataRecebimento python:view.get_date_received(ar_obj);
-                        DataAmostragem python:view.get_date_sampled_(ar_obj);">
+                        DataAmostragem python:view.get_date_sampled_(ar_obj);
+                        DataDaColeta python:view.get_hora_coleta(ar_obj);">
 
 	<style type="text/css" media="all">
                     body {
@@ -188,7 +189,7 @@
 				<div class="textReport"><strong>ENDEREÇO:</strong> <span tal:content="structure python:client['obj'].getPhysicalAddress().get('address','')"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="DataAmostragem | nothing"></span></div>
+				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="DataDaColeta | nothing"></span></div>
 			</td>			
 		</tr>		
 		<tr>
