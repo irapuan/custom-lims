@@ -197,7 +197,7 @@
 				<div class="textReport"><strong>Material:</strong> <span tal:content="sample/sample_type/title|nothing"></span></div>
 			</td>
 			<td>
-				<div class="textReport"><strong>Data de Entrada no Lab.:</strong> <span tal:content="DataRecebimento | nothing"></span></div>
+				<div class="textReport"><strong>Data de Entrada no Laboratório:</strong> <span tal:content="DataRecebimento | nothing"></span></div>
 			</td>				
 		</tr>
 		<tr>
@@ -371,7 +371,7 @@
 		<tr>
 			<td colspan="2">
 				<div class="textLegendaJustify">
-					<strong>Legenda:</strong> NR: Não há recomendação pela legislação, VMP: Valor máximo permitido, pH: Potencial hidrogeniônico, cel: células, uH: Unidade de cor pelo Hazen em mg/L Pt-Co, NTU: Unidades Nefelométricas de Turbidez, V.A.: Virtualmente ausente, UFC: Unidade Formadora de Colônia, LQ: Limite de Quantificação, N.A.: Não Aplicavel: E.A.: Em Análise.
+					<strong>Legenda:</strong> NR: Não há recomendação pela legislação, VMP: Valor máximo permitido, pH: potencial Hidrogeniônico, cel: células, uH: Unidade de cor pelo Hazen em mg/L Pt-Co, NTU: Unidades Nefelométricas de Turbidez, V.A.: Virtualmente Ausente, UFC: Unidade Formadora de Colônia, LQ: Limite de Quantificação, N.A.: Não Aplicavel: E.A.: Em Análise.
 				</div>
 			</td>
 		</tr>		
@@ -391,7 +391,7 @@
 					<tr>
 						<td align="center">
 							<div class="textResponsavelTecnicaCertificacao">
-								Certifico verificado e aprovado por meios eletrônicos
+								Certificado verificado e aprovado por meios eletrônicos
 							</div>
 						</td>
 					</tr>

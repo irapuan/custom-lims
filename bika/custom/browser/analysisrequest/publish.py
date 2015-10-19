@@ -24,7 +24,7 @@ class AnalysisRequestPublishView(_AnalysisRequestPublishView):
             if 'MicrolabColetor' in ar.Schema() else None
             
     def get_date_received(self, ar):
-        return ar.Schema().getField('DateReceived').get(ar).strftime('%d/%m/%Y %H:%M' ) \
+        return ar.Schema().getField('DateReceived').get(ar).strftime('%d/%m/%Y %H h %M min' ) \
             if 'DateReceived' in ar.Schema() else None
     def get_date_sampled_(self, ar):
         return ar.Schema().getField('SamplingDate').get(ar) \
