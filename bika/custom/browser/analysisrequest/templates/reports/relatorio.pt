@@ -202,7 +202,7 @@
 		</tr>
 		<tr>
 			<td>
-				<div class="textReport"><strong>Referência:</strong> <span _tal:content="structure analysisrequest/cliente_reference | nothing"></span> </div>
+				<div class="textReport"><strong>Referência:</strong> <span tal:content="structure analysisrequest/client_reference | nothing"></span> </div>
 			</td>
 			<td>
         <span tal:condition="DataValidade">
@@ -439,5 +439,5 @@
 	</table>
 </center>
 
-<span tal:content="structure analysisrequest"></span>
+<span _tal:content="structure analysisrequest"></span>
 </tal:report>
