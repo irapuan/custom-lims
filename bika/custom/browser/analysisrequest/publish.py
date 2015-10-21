@@ -32,3 +32,7 @@ class AnalysisRequestPublishView(_AnalysisRequestPublishView):
     def get_hora_coleta(self, ar):
         return ar.Schema().getField('DataDaColeta').get(ar) \
             if 'DataDaColeta' in ar.Schema() else None
+    def get_data_recebimento(self, ar):
+        return ar.Schema().getField('DataRecebimentoEditavel').get(ar) \
+            if 'DataRecebimentoEditavel' in ar.Schema() else None
+

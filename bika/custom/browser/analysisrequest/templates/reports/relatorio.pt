@@ -32,7 +32,7 @@
                         propostaComercial python:view.get_PropostaComercial(ar_obj);
                         DataValidade python:view.get_DataValidade(ar_obj);
                         Coletor python:view.get_Coletor(ar_obj);
-                        DataRecebimento python:view.get_date_received(ar_obj);
+                        DataRecebimento python:view.get_data_recebimento(ar_obj);
                         DataAmostragem python:view.get_date_sampled_(ar_obj);
                         DataDaColeta python:view.get_hora_coleta(ar_obj);">
 
@@ -157,7 +157,7 @@
 	<tbody>
 		<tr>
 			<td>
-				<div class="tituloReport">PROPOSTA COMERCIAL Nº <i tal:content="propostaComercial">0</i> </div>
+				<div class="tituloReport"><span tal:content="propostaComercial"></span></div>
 			</td>
 		<tr>
 	</tbody>
@@ -202,7 +202,7 @@
 		</tr>
 		<tr>
 			<td>
-				<div class="textReport"><strong>Referência:</strong> <span tal:content="structure analysisrequest/client_sampleid | nothing"></span> </div>
+				<div class="textReport"><strong>Referência:</strong> <span _tal:content="structure analysisrequest/cliente_reference | nothing"></span> </div>
 			</td>
 			<td>
         <span tal:condition="DataValidade">
@@ -439,5 +439,5 @@
 	</table>
 </center>
 
-<span _tal:content="structure analysisrequest"></span>
+<span tal:content="structure analysisrequest"></span>
 </tal:report>
