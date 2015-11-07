@@ -70,17 +70,17 @@
                     	font-family: Arial, Helvetica, sans-serif;
                     	font-size: 12px;
                     	text-align: center;
-                    }          
+                    }
                     .textLegendaJustify{
                     	font-family: Arial, Helvetica, sans-serif;
                     	font-size: 10px;
                     	text-align: justify;
-                    }     
+                    }
                     .textCidade{
                     	font-family: Arial, Helvetica, sans-serif;
                     	font-size: 12px;
                         padding-left: 6px;
-                        padding-top: 3px;                    	
+                        padding-top: 3px;
                     }
                     .textResponsavelTecnica{
                     	font-family: Arial, Helvetica, sans-serif;
@@ -89,22 +89,22 @@
                     }
                     .textResponsavelTecnicaCertificacao{
                     	font-family: Arial, Helvetica, sans-serif;
-                    	font-size: 8px;                        
+                    	font-size: 8px;
                     }
         .tabComBorda{
             width: 700px;
             border-style: solid;
             border-color: Black;
             border-width: 1px;
-            border-collapse: collapse;                
+            border-collapse: collapse;
         }
         .tabComBorda tr td{
             border-style: solid;
             border-color: Black;
-            border-width: 1px;             
+            border-width: 1px;
         }
         .tabSemBorda{
-            
+
             border-style: none;
             border-collapse: collapse;
         }
@@ -120,19 +120,19 @@
                     }
                     .tabCabecalhoNaoImpresso tr td{
                         border-style: none;
-                    }     
-                    
+                    }
+
                     #page-number:after {
                         counter-increment: page_number;
                         content: "Página " counter(page_number);
-                    }   
+                    }
 	</style>
 
 	<style type="text/css" media="print">
 		.tabCabecalhoNaoImpresso{
 			display: none;
 		}
-	</style>	
+	</style>
 
 <center>
 	<!-- Titulo -->
@@ -173,7 +173,7 @@
 			</td>
 			<td width="350">
 				<div class="tituloReport">DADOS DA COLETA</div>
-			</td>			
+			</td>
 		</tr>
 		<!-- Valores dados da Amostra -->
 		<tr>
@@ -182,7 +182,7 @@
 			</td>
 			<td>
 				<div class="textReport"><strong>Coletor da amostra: </strong> <i tal:content="Coletor | nothing"></i></div>
-			</td>			
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -190,15 +190,15 @@
 			</td>
 			<td>
 				<div class="textReport"><strong>Data da Coleta:</strong> <span tal:content="DataDaColeta | nothing"></span></div>
-			</td>			
-		</tr>		
+			</td>
+		</tr>
 		<tr>
 			<td>
 				<div class="textReport"><strong>Material:</strong> <span tal:content="sample/sample_type/title|nothing"></span></div>
 			</td>
 			<td>
 				<div class="textReport"><strong>Data de Entrada no Laboratório:</strong> <span tal:content="DataRecebimento | nothing"></span></div>
-			</td>				
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -208,11 +208,11 @@
         <span tal:condition="DataValidade">
           <div class="textReport"><strong>Data de Validade:</strong> <span tal:content="DataValidade | nothing"></span></div>
         </span>
-			</td>	
+			</td>
 		</tr>
 	</tbody>
 	</table>
-  
+
   <tal:poc tal:repeat="poc python:categanalyses.keys()">
   <!--<h2 tal:content="poc"></h2>-->
   <tal:cat tal:repeat="cat python:categanalyses.get(poc,{}).keys()">
@@ -227,8 +227,8 @@
 	</tbody>
 	</table>
 
-	<!-- Titulo Ensaios Físico-Químico -->	
-  
+	<!-- Titulo Ensaios Físico-Químico -->
+
 	<table class="tabComBorda">
 	<tbody>
 		<!-- Titulo Ensaios Físico-Químico -->
@@ -238,7 +238,7 @@
 			</td>
 			<td width="50">
 				<div class="tituloReport">Resultados</div>
-			</td>						
+			</td>
 			<td width="50">
 				<div class="tituloReport">Unidade</div>
 			</td>
@@ -247,15 +247,15 @@
 			</td>
 			<td width="80">
 				<div class="tituloReport"><span tal:content="structure specifications/title|nothing"></span></div>
-			</td>			
+			</td>
 			<td width="125">
 				<div class="tituloReport">¹ Metodologia</div>
-			</td>			
+			</td>
 		</tr>
-    
-    
+
+
 		<!-- Valores Ensaios Físco-Químico -->
-    
+
     <tal:analyses tal:repeat="analysis python:categanalyses[poc][cat]">
     <tal:analysis tal:define="analysis_css_result python:'outofrange' if analysis['outofrange'] else '';
                     analysis_css_accredited python:'accredited' if analysis['accredited'] else '';
@@ -273,7 +273,7 @@
 				<div class="textReportCenter">
           <strong><span class="result" tal:content="structure analysis/formatted_result"></span></strong>
         </div>
-			</td>				
+			</td>
       <td>
         <div class="textReportCenter">
           <span class="units" tal:content="structure analysis/formatted_unit|nothing"></span>
@@ -284,32 +284,41 @@
           <span tal:condition="not: analysis/specs/hidemin | nothing">
             <span>NR</span>
           </span>
-          
+
           <span class="units" tal:content="structure analysis/specs/hidemin|nothing"></span>
         </div>
 			</td>
 			<td>
 				<div class="textReportCenter">
-          <span tal:condition="not: analysis/formatted_specs">
-            <span>NR</span>
-          </span>
-          <span tal:condition="analysis/specs/rangecomment | nothing">
-            <span tal:content="structure analysis/specs/rangecomment | nothing"></span>
-          </span>
-          <span tal:condition="not: analysis/specs/rangecomment | nothing">
-            <span tal:content="structure analysis/formatted_specs">NR</span>
-          </span>
-        </div>
-			</td>			
+
+                  <span tal:condition="not: analysis/specs/rangecomment | nothing">
+                    <span tal:condition="not:analysis/specs_dict/rangecomment | nothing">
+                        <span>NR</span>
+                    </span>
+                  </span>
+
+                  <span tal:condition="analysis/specs_dict/rangecomment | nothing">
+                    <span tal:content="structure analysis/specs_dict/rangecomment | nothing"></span>
+                  </span>
+                  <span tal:condition="analysis/specs/rangecomment | nothing">
+                    <span tal:content="structure analysis/specs/rangecomment | nothing"></span>
+                  </span>
+                  <span tal:condition="not: analysis/specs/rangecomment | nothing">
+                    <span tal:content="structure analysis/formatted_specs">NR</span>
+                  </span>
+                </div>
+
+                </div>
+			</td>
 			<td>
 				<div class="textReportCenter"><span class="result" tal:content="structure metodo/title|nothing"></span></div>
-			</td>			
+			</td>
 		</tr>
     </tal:analysis>
    	</tal:analyses>
 	</tbody>
-	</table>	
-    
+	</table>
+
     </tal:cat>
     </tal:poc>
 	<!-- Conclusão -->
@@ -318,7 +327,7 @@
 		<tr>
 			<td colspan="2">
 				<div class="textReport"><strong>As opniões e interpretações expressas abaixo não fazem parte do escopo de acreditação deste laboratório:</strong> </div>
-        
+
         <div id="resultsinterpretation" class="textReport"
             tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
             tal:condition="python: ri">
@@ -335,11 +344,11 @@
                 <div tal:content="structure python:ri.get(rid,{}).get('richtext','')"></div>
             </tal:ris>
         </div>
-        
+
         <div id="resultsinterpretation" tal:condition="analysisrequest/resultsinterpretation">
             <span tal:content="structure analysisrequest/resultsinterpretation"></span>
         </div>
-        
+
         <div id="resultsinterpretation"
             tal:define="ri python:dict([(k,v) for (k,v) in analysisrequest.get('resultsinterpretationdepts',{}).items() if v and v.get('richtext','')]);"
             tal:condition="python: ri">
@@ -374,7 +383,7 @@
 					<strong>Legenda:</strong> NR: Não há recomendação pela legislação, VMP: Valor máximo permitido, pH: potencial Hidrogeniônico, cel: células, uH: Unidade de cor pelo Hazen em mg/L Pt-Co, NTU: Unidades Nefelométricas de Turbidez, V.A.: Virtualmente Ausente, UFC: Unidade Formadora de Colônia, LQ: Limite de Quantificação, N.A.: Não Aplicavel: E.A.: Em Análise.
 				</div>
 			</td>
-		</tr>		
+		</tr>
 		<tr>
 			<td width="50%" height="85">
 				<table width="100%" class="tabSemBorda">
@@ -404,11 +413,11 @@
 				 <div class="textCidade">Goiânia, <span tal:content="python:DateTime().strftime('%d/%m/%Y')"></span></div>
          </tal:block>
         </center>
-      
-			</td>			
+
+			</td>
 		</tr>
 	</tbody>
-	</table>	
+	</table>
 
 	<!-- Rodape -->
 	<table class="tabSemBorda" width="700">
