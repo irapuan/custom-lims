@@ -307,8 +307,6 @@
                     <span tal:content="structure analysis/formatted_specs">NR</span>
                   </span>
                 </div>
-
-                </div>
 			</td>
 			<td>
 				<div class="textReportCenter"><span class="result" tal:content="structure metodo/title|nothing"></span></div>
